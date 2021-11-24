@@ -63,18 +63,25 @@ input[type="text"] {
 
 .btn-submit {
   width: fit-content;
-  font-size: 24px;
+  font-size: 16px;
   font-family: raleway;
   border-radius: 16px;
   padding: 12px 24px;
   border: 2px solid #3c9ca4;
   align-self: flex-end;
   cursor: pointer;
+  margin-top: 20px;
+  margin-left: 20px;
+  float: right;
 }
 
 .btn-submit:hover {
   background: #3c9ca4;
   color: white;
+}
+
+a:hover {
+  color: #fc940c;
 }
 
 .text-center {
