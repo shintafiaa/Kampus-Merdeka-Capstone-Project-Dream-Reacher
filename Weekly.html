@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dream Reacher Website - Planner Website</title>
+        <style>
+            body{
+                font-family: Roboto;
+                font-size: 10pt;
+            }
+            button{
+                padding:5px 10px;
+                border-radius: 99px;
+                border:none;
+                margin: 2px 5px;
+                color: white;
+                font-weight: 500;
+            }
+            .input_data{
+                padding:5px 10px;
+                border-radius: 99px;
+                border:none;
+                margin: 2px 5px;
+                color: white;
+                font-weight: 500;
+                background-color: #9cf3f3;
+            }
+            .flex-container {
+                display: flex;
+                flex-wrap: wrap;
+                margin: 20px 100px;
+                justify-content: center;
+            }
+            .flex-container > div {
+                width: 50%;
+                text-align: center;
+            }
+            table{
+                width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            th,td{
+                text-align: center;
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            h1{
+                background-color: #9cf3f3;
+                border-radius: 99px;
+                margin:20px 20px 5px 20px;
+                padding:5px 0;
+                color: white;
+                text-transform: uppercase;
+            }
+            input{
+                border-radius: 99px;
+            }
+            h2{
+                margin-top:0px;
+                color: #9cf3f3;
+                font-size: 13pt;
+                text-transform: uppercase;
+            }
+            </style>
+    </head>
+    <body>
+        <div class="contents" align="center">
+            <h1>Dream Reacher</h1>
+            <form id="form_bookshelf">
+                <input type="hidden" id="id" value="0">
+                <input type="text" placeholder="No" id="title">
+                <input type="text" placeholder="Week" id="author">
+                <input type="text" placeholder="To Do List" id="year">
+                <input class="input_data" type="submit" value="Submit">
+            </form>
+            <div class="flex-container">
+                <div>
+                    <h1>Weekly-Planner</h1>
+                    <table id="user-list-table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Week</th>
+                                <th>Mon</th>
+                                <th>Tue</th>
+                                <th>Wen</th>
+                                <th>Thu</th>
+                                <th>Fri</th>
+                                <th>Sat</th>
+                                <th>Sun</th>
+                            </tr>
+                        </thead>
+                        <tbody id="user-list-detail" align="center">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
