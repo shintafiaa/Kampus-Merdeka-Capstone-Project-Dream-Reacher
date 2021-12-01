@@ -5,6 +5,138 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DREAM REACHER</title>
+    <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body></body>
+  <body>
+    <header>
+      <h1>Dream Reacher</h1>
+    </header>
+
+    <div class="wrapper">
+      <div class="container bg-white shadow">
+        <h2 class="container-header text-center">Input your todo list</h2>
+        <form class="form" action="#" id="form">
+          <div class="form-group form-title">
+            <label for="title">Type Your Todo List: </label>
+            <input type="text" id="title" name="title" required />
+          </div>
+          <div class="form-group form-title">
+            <label for="date">Deadline: </label>
+            <input type="date" id="date" name="date" required />
+          </div>
+          <input
+            type="submit"
+            value="Submit"
+            name="Submit"
+            class="btn-submit"
+          />
+        </form>
+      </div>
+      <div class="container shadow">
+        <h2 class="container-header text-center">Your todo lists:</h2>
+        <div class="list-item" id="todos"></div>
+      </div>
+      <div class="container shadow">
+        <h2 class="container-header text-center">Weekly Planner</h2>
+        <!--weekly planner input table-->
+        <div class="grid-container">
+          <div class="grid-item">Week</div>
+          <div class="grid-item">Mon</div>
+          <div class="grid-item">Tue</div>
+          <div class="grid-item">Wed</div>
+          <div class="grid-item">Thur</div>
+          <div class="grid-item">Fri</div>
+          <div class="grid-item">Sat</div>
+          <div class="grid-item">Sun</div>
+          <!--first row-->
+          <div class="grid-item"><input size="12.5" /></div>
+          <div class="grid-item"><input size="12.5" /></div>
+          <div class="grid-item"><input size="12.5" /></div>
+          <div class="grid-item"><input size="12.5" /></div>
+          <div class="grid-item"><input size="12.5" /></div>
+          <div class="grid-item"><input size="12.5" /></div>
+          <div class="grid-item"><input size="12.5" /></div>
+          <div class="grid-item"><input size="12.5" /></div>
+        </div>
+        <input type="submit" value="Save" name="Submit" class="btn-submit" />
+        <input type="submit" value="Add row" name="Submit" class="btn-submit" />
+      </div>
+      <div class="container shadow">
+        <h2 class="container-header text-center">Weekly Planner</h2>
+        <!--weekly planner output table-->
+        <a href="#">Edit Schedule</a>
+        <a href="#">Focus Mode (per row)</a>
+        <div class="grid-container">
+          <div class="grid-item">Week</div>
+          <div class="grid-item">Mon</div>
+          <div class="grid-item">Tue</div>
+          <div class="grid-item">Wed</div>
+          <div class="grid-item">Thur</div>
+          <div class="grid-item">Fri</div>
+          <div class="grid-item">Sat</div>
+          <div class="grid-item">Sun</div>
+          <!--first row-->
+          <div class="grid-item"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item"></div>
+        </div>
+      </div>
+      <div class="container shadow">
+        <h2 class="container-header text-center">Daily Planner</h2>
+        <!--daily planner input table-->
+        <div class="grid-container">
+          <div class="grid-item">Time</div>
+          <div class="grid-item">Mon</div>
+          <div class="grid-item">Tue</div>
+          <div class="grid-item">Wed</div>
+          <div class="grid-item">Thur</div>
+          <div class="grid-item">Fri</div>
+          <div class="grid-item">Sat</div>
+          <div class="grid-item">Sun</div>
+          <!--first row-->
+          <div class="grid-item"><input size="12.5" /></div>
+          <div class="grid-item"><input size="12.5" /></div>
+          <div class="grid-item"><input size="12.5" /></div>
+          <div class="grid-item"><input size="12.5" /></div>
+          <div class="grid-item"><input size="12.5" /></div>
+          <div class="grid-item"><input size="12.5" /></div>
+          <div class="grid-item"><input size="12.5" /></div>
+          <div class="grid-item"><input size="12.5" /></div>
+        </div>
+        <input type="submit" value="Save" name="Submit" class="btn-submit" />
+        <input type="submit" value="Add row" name="Submit" class="btn-submit" />
+      </div>
+      <div class="container shadow">
+        <h2 class="container-header text-center">Daily Planner</h2>
+        <!--daily planner output table-->
+        <a href="#">Edit Schedule</a>
+        <div class="grid-container">
+          <div class="grid-item">Time</div>
+          <div class="grid-item">Mon</div>
+          <div class="grid-item">Tue</div>
+          <div class="grid-item">Wed</div>
+          <div class="grid-item">Thur</div>
+          <div class="grid-item">Fri</div>
+          <div class="grid-item">Sat</div>
+          <div class="grid-item">Sun</div>
+          <!--first row-->
+          <div class="grid-item"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item"></div>
+        </div>
+      </div>
+    </div>
+    <script src="js/dom.js" type="text/javascript"></script>
+    <script src="js/script.js" type="text/javascript"></script>
+  </body>
 </html>
