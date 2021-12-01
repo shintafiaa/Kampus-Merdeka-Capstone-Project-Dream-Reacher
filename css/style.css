@@ -30,11 +30,39 @@ header {
   padding: 16px;
 }
 
+.item {
+  border-radius: 16px;
+  margin-top: 16px;
+  padding: 12px 24px 12px 24px;
+  background: white;
+  display: flex;
+  align-items: center;
+}
+
+.item > .aTodo h2 {
+  margin-bottom: unset;
+}
+
+.item > .aTodo p {
+  margin-top: 5px;
+}
+
 .form {
   display: flex;
   padding: 16px;
   flex-direction: column;
   border-radius: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 4px;
+  font-size: 18;
+  font-weight: lighter;
 }
 
 .form-title {
@@ -51,7 +79,8 @@ header {
   box-shadow: 15px 15px 30px rgba(166, 173, 201, 0.2);
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="date"] {
   font-family: raleway;
   background: #f5f1ff;
   border: 2px solid #3c9ca4;
