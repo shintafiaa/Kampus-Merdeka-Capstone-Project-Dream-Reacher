@@ -16,6 +16,13 @@ header {
   color: white;
 }
 
+.dream-reacher-logo {
+  margin-top: -17px;
+  margin-right: 17px;
+  width: 70px;
+  float: left;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
