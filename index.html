@@ -36,107 +36,108 @@
           />
         </form>
       </div>
-      <div class="container shadow">
+      <div class="container shadow hidden" id="todoListView">
         <h2 class="container-header text-center">Your todo lists:</h2>
         <div class="list-item" id="todos"></div>
       </div>
-      <div class="container shadow">
+      <div class="container shadow" id="WeeklyContainerInput">
         <h2 class="container-header text-center">Weekly Planner</h2>
         <!--weekly planner input table-->
-        <div class="grid-container">
-          <div class="grid-item">Week</div>
-          <div class="grid-item">Mon</div>
-          <div class="grid-item">Tue</div>
-          <div class="grid-item">Wed</div>
-          <div class="grid-item">Thur</div>
-          <div class="grid-item">Fri</div>
-          <div class="grid-item">Sat</div>
-          <div class="grid-item">Sun</div>
+        <div class="grid-container" id="tableWeeklyInput">
+          <div class="grid-item header">Week</div>
+          <div class="grid-item header">Mon</div>
+          <div class="grid-item header">Tue</div>
+          <div class="grid-item header">Wed</div>
+          <div class="grid-item header">Thur</div>
+          <div class="grid-item header">Fri</div>
+          <div class="grid-item header">Sat</div>
+          <div class="grid-item header">Sun</div>
           <!--first row-->
-          <div class="grid-item"><input size="12.5" /></div>
-          <div class="grid-item"><input size="12.5" /></div>
-          <div class="grid-item"><input size="12.5" /></div>
-          <div class="grid-item"><input size="12.5" /></div>
-          <div class="grid-item"><input size="12.5" /></div>
-          <div class="grid-item"><input size="12.5" /></div>
-          <div class="grid-item"><input size="12.5" /></div>
-          <div class="grid-item"><input size="12.5" /></div>
+          <div class="grid-item"><input size="12.5" id="week1" /></div>
+          <div class="grid-item"><input size="12.5" id="mon1" /></div>
+          <div class="grid-item"><input size="12.5" id="tue1" /></div>
+          <div class="grid-item"><input size="12.5" id="wed1" /></div>
+          <div class="grid-item"><input size="12.5" id="thur1" /></div>
+          <div class="grid-item"><input size="12.5" id="fri1" /></div>
+          <div class="grid-item"><input size="12.5" id="sat1" /></div>
+          <div class="grid-item"><input size="12.5" id="sun1" /></div>
         </div>
-        <input type="submit" value="Save" name="Submit" class="btn-submit" />
-        <input type="submit" value="Add row" name="Submit" class="btn-submit" />
+        <input
+          type="submit"
+          value="Save"
+          name="Submit"
+          class="btn-submit"
+          id="weeklyButtonSave"
+        />
+        <input
+          type="submit"
+          value="Add row"
+          name="Submit"
+          class="btn-submit"
+          id="weeklyAddRowButton"
+        />
       </div>
-      <div class="container shadow">
+      <div class="container shadow hidden" id="WeeklyContainerOutput">
         <h2 class="container-header text-center">Weekly Planner</h2>
         <!--weekly planner output table-->
-        <a href="#">Edit Schedule</a>
+        <a href="#" id="editWeeklySchedule">Edit Schedule</a>
         <a href="#">Focus Mode (per row)</a>
-        <div class="grid-container">
-          <div class="grid-item">Week</div>
-          <div class="grid-item">Mon</div>
-          <div class="grid-item">Tue</div>
-          <div class="grid-item">Wed</div>
-          <div class="grid-item">Thur</div>
-          <div class="grid-item">Fri</div>
-          <div class="grid-item">Sat</div>
-          <div class="grid-item">Sun</div>
-          <!--first row-->
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
+        <div class="grid-container" id="tableWeeklyView">
+          <div class="grid-item header">Week</div>
+          <div class="grid-item header">Mon</div>
+          <div class="grid-item header">Tue</div>
+          <div class="grid-item header">Wed</div>
+          <div class="grid-item header">Thur</div>
+          <div class="grid-item header">Fri</div>
+          <div class="grid-item header">Sat</div>
+          <div class="grid-item header">Sun</div>
         </div>
       </div>
-      <div class="container shadow">
+      <div class="container shadow" id="DailyContainerInput">
         <h2 class="container-header text-center">Daily Planner</h2>
         <!--daily planner input table-->
         <div class="grid-container">
-          <div class="grid-item">Time</div>
-          <div class="grid-item">Mon</div>
-          <div class="grid-item">Tue</div>
-          <div class="grid-item">Wed</div>
-          <div class="grid-item">Thur</div>
-          <div class="grid-item">Fri</div>
-          <div class="grid-item">Sat</div>
-          <div class="grid-item">Sun</div>
+          <div class="grid-item header">Time</div>
+          <div class="grid-item header">Mon</div>
+          <div class="grid-item header">Tue</div>
+          <div class="grid-item header">Wed</div>
+          <div class="grid-item header">Thur</div>
+          <div class="grid-item header">Fri</div>
+          <div class="grid-item header">Sat</div>
+          <div class="grid-item header">Sun</div>
           <!--first row-->
-          <div class="grid-item"><input size="12.5" /></div>
-          <div class="grid-item"><input size="12.5" /></div>
-          <div class="grid-item"><input size="12.5" /></div>
-          <div class="grid-item"><input size="12.5" /></div>
-          <div class="grid-item"><input size="12.5" /></div>
-          <div class="grid-item"><input size="12.5" /></div>
-          <div class="grid-item"><input size="12.5" /></div>
-          <div class="grid-item"><input size="12.5" /></div>
+          <div class="grid-item"><input size="12.5" id="dailyTime1" /></div>
+          <div class="grid-item"><input size="12.5" id="dailyMon1" /></div>
+          <div class="grid-item"><input size="12.5" id="dailyTue1" /></div>
+          <div class="grid-item"><input size="12.5" id="dailyWed1" /></div>
+          <div class="grid-item"><input size="12.5" id="dailyThur1" /></div>
+          <div class="grid-item"><input size="12.5" id="dailyFri1" /></div>
+          <div class="grid-item"><input size="12.5" id="dailySat1" /></div>
+          <div class="grid-item"><input size="12.5" id="dailySun1" /></div>
         </div>
-        <input type="submit" value="Save" name="Submit" class="btn-submit" />
+        <input
+          type="submit"
+          value="Save"
+          name="Submit"
+          class="btn-submit"
+          id="dailyButtonSave"
+        />
         <input type="submit" value="Add row" name="Submit" class="btn-submit" />
       </div>
-      <div class="container shadow">
+      <div class="container shadow hidden" id="DailyContainerOutput">
         <h2 class="container-header text-center">Daily Planner</h2>
         <!--daily planner output table-->
-        <a href="#">Edit Schedule</a>
-        <div class="grid-container">
-          <div class="grid-item">Time</div>
-          <div class="grid-item">Mon</div>
-          <div class="grid-item">Tue</div>
-          <div class="grid-item">Wed</div>
-          <div class="grid-item">Thur</div>
-          <div class="grid-item">Fri</div>
-          <div class="grid-item">Sat</div>
-          <div class="grid-item">Sun</div>
+        <a href="#" id="editDailySchedule">Edit Schedule</a>
+        <div class="grid-container" id="tableDailyView">
+          <div class="grid-item header">Time</div>
+          <div class="grid-item header">Mon</div>
+          <div class="grid-item header">Tue</div>
+          <div class="grid-item header">Wed</div>
+          <div class="grid-item header">Thur</div>
+          <div class="grid-item header">Fri</div>
+          <div class="grid-item header">Sat</div>
+          <div class="grid-item header">Sun</div>
           <!--first row-->
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
         </div>
       </div>
     </div>
