@@ -33,6 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const weeklyAddRowButton = document.getElementById("weeklyAddRowButton");
   weeklyAddRowButton.addEventListener("click", function (event) {
     event.preventDefault();
-    addRowWeeklyTable();
+    addInputRowWeeklyTable();
   });
 });
