@@ -23,8 +23,5 @@ function makeTodo(data, timestamp) {
   const container = document.createElement("div");
   container.classList.add("item", "shadow");
   container.append(textContainer);
-
-  document.getElementById("todoListView").style.display = "block";
-
   return container;
 }
