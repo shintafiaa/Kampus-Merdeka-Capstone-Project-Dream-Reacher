@@ -2,7 +2,7 @@ const LIST_TODO_ID = "todos";
 
 function addTodo() {
   const listTodoId = document.getElementById(LIST_TODO_ID);
-  const textTodo = document.getElementById("title").value; //mengambil elemen pada html, mengambil element <input> dengan id title
+  const textTodo = document.getElementById("title").value;
   const timestamp = document.getElementById("date").value;
 
   const todo = makeTodo(textTodo, timestamp);
@@ -23,6 +23,8 @@ function makeTodo(data, timestamp) {
   const container = document.createElement("div");
   container.classList.add("item", "shadow");
   container.append(textContainer);
+
+  document.getElementById("todoListView").style.display = "block";
 
   return container;
 }
