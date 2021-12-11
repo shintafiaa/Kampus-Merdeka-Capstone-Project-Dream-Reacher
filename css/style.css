@@ -10,14 +10,44 @@ body {
   margin: 0;
 }
 
+h1 {
+  margin-top: 30px;
+}
+
 header {
   background: #3c9ca4;
   padding: 16px;
   color: white;
 }
+.navbar {
+  overflow: hidden;
+}
+
+.navbar a {
+  float: right;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar .active {
+  color: black;
+  background: #ddd;
+}
+
+.navbar a {
+  color: #f2f2f2;
+  background: #1d4a4e;
+}
+
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
 
 .dream-reacher-logo {
-  margin-top: -17px;
+  margin-top: 10px;
   margin-right: 17px;
   width: 70px;
   float: left;
@@ -34,6 +64,12 @@ header {
   border-radius: 8px;
   margin: 16px;
   background: #f8f9fa;
+  padding: 16px;
+}
+
+.containerGroup {
+  width: 100%;
+  margin: 16px;
   padding: 16px;
 }
 
@@ -116,13 +152,70 @@ input[type="date"] {
   color: white;
 }
 
-a:hover {
+.btn-reset {
+  width: fit-content;
+  font-size: 16px;
+  font-family: raleway;
+  border-radius: 16px;
+  padding: 12px 24px;
+  border: 2px solid red;
+  align-self: flex-end;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-left: 20px;
+  float: right;
+  color: red;
+}
+
+.btn-reset:hover {
+  background: red;
+  color: white;
+}
+
+.check-button {
+  background: url("../assets/check-outline.svg");
+  background-size: contain;
+  width: 40px;
+  height: 40px;
+  margin-left: auto;
+  cursor: pointer;
+  border: none;
+}
+
+.check-button:hover {
+  background: url("../assets/check-solid.svg");
+  background-size: contain;
+}
+
+.trash-button {
+  background: url("../assets/trash-outline.svg");
+  background-size: contain;
+  width: 40px;
+  height: 40px;
+  margin-left: 16px;
+  cursor: pointer;
+  border: none;
+}
+
+.trash-button:hover {
+  background: url("../assets/trash-fill.svg");
+  background-size: contain;
+}
+
+.wrapper a:hover {
   color: #fc940c;
 }
 
 .text-center {
   text-align: center;
 }
+
+/* .container .grid-container-button {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto auto auto;
+  background-color: #3c9ca4;
+  padding: 2px;
+} */
 
 .grid-container {
   display: grid;
@@ -138,6 +231,13 @@ a:hover {
   padding: 3px;
 }
 
+.eachWeeklyTask {
+  border-width: 1.5px;
+  border-style: solid;
+  border-color: #3c9ca4;
+  margin: 1px;
+}
+
 .header {
   font-weight: bold;
 }
@@ -146,6 +246,6 @@ input {
   padding: 5px 0;
 }
 
-.hidden {
-  display: none;
+.weekly-input {
+  overflow: scroll;
 }

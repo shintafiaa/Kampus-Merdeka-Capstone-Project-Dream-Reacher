@@ -13,11 +13,15 @@
       <div class="navbar">
         <img class="dream-reacher-logo" src="assets/dream reacher logo.png" />
         <h1>Dream Reacher</h1>
+
+        <a href="#" id="toggleDailySchedule">Daily Planner</a>
+        <a href="#" id="toggleWeeklySchedule">Weekly Planner</a>
+        <a href="#" id="toggleTodoList">Todo List</a>
       </div>
     </header>
 
     <div class="wrapper">
-      <div class="container bg-white shadow">
+      <div class="container shadow" id="todoListInput">
         <h2 class="container-header text-center">Input your todo list</h2>
         <form class="form" action="#" id="form">
           <div class="form-group form-title">
@@ -36,22 +40,23 @@
           />
         </form>
       </div>
-      <div class="container shadow hidden" id="todoListView">
+      <div class="container shadow" id="todoListView">
         <h2 class="container-header text-center">Your todo lists:</h2>
         <div class="list-item" id="todos"></div>
       </div>
+
       <div class="container shadow" id="WeeklyContainerInput">
         <h2 class="container-header text-center">Weekly Planner</h2>
         <!--weekly planner input table-->
-        <div class="grid-container">
+        <div class="grid-container weekly-input" id="inputWeeklyRow">
           <div class="grid-item">Week</div>
-          <div class="grid-item">Mon</div>
-          <div class="grid-item">Tue</div>
-          <div class="grid-item">Wed</div>
-          <div class="grid-item">Thur</div>
-          <div class="grid-item">Fri</div>
-          <div class="grid-item">Sat</div>
-          <div class="grid-item">Sun</div>
+          <div class="grid-item">Monday</div>
+          <div class="grid-item">Tuesday</div>
+          <div class="grid-item">Wednesday</div>
+          <div class="grid-item">Thursday</div>
+          <div class="grid-item">Friday</div>
+          <div class="grid-item">Saturday</div>
+          <div class="grid-item">Sunday</div>
         </div>
         <input
           type="submit"
@@ -67,13 +72,19 @@
           class="btn-submit"
           id="weeklyAddRowButton"
         />
+        <input
+          type="submit"
+          value="Reset"
+          name="Submit"
+          class="btn-reset"
+          id="weeklyResetButton"
+        />
       </div>
       <div class="container shadow hidden" id="WeeklyContainerOutput">
         <h2 class="container-header text-center">Weekly Planner</h2>
         <!--weekly planner output table-->
         <a href="#" id="editWeeklySchedule">Edit Schedule</a>
-        <a href="#">Focus Mode (per row)</a>
-        <div class="grid-container">
+        <div class="grid-container" id="outputItemWeeklyData">
           <div class="grid-item">Week</div>
           <div class="grid-item">Mon</div>
           <div class="grid-item">Tue</div>
@@ -84,10 +95,11 @@
           <div class="grid-item">Sun</div>
         </div>
       </div>
+
       <div class="container shadow" id="DailyContainerInput">
         <h2 class="container-header text-center">Daily Planner</h2>
         <!--daily planner input table-->
-        <div class="grid-container">
+        <div class="grid-container" id="inputDailyRow">
           <div class="grid-item">Time</div>
           <div class="grid-item">Mon</div>
           <div class="grid-item">Tue</div>
@@ -104,13 +116,26 @@
           class="btn-submit"
           id="dailyButtonSave"
         />
-        <input type="submit" value="Add row" name="Submit" class="btn-submit" />
+        <input
+          type="submit"
+          value="Add row"
+          name="Submit"
+          class="btn-submit"
+          id="dailyAddRowButton"
+        />
+        <input
+          type="submit"
+          value="Reset"
+          name="Submit"
+          class="btn-reset"
+          id="dailyResetButton"
+        />
       </div>
       <div class="container shadow hidden" id="DailyContainerOutput">
         <h2 class="container-header text-center">Daily Planner</h2>
         <!--daily planner output table-->
-        <a href="#">Edit Schedule</a>
-        <div class="grid-container">
+        <a href="#" id="editButtonDaily">Edit Schedule</a>
+        <div class="grid-container" id="outputItemDailyData">
           <div class="grid-item">Time</div>
           <div class="grid-item">Mon</div>
           <div class="grid-item">Tue</div>

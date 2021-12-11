@@ -1,38 +1,73 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const submitForm = document.getElementById("form");
+  cekWeeklyInputScroll();
 
+  const submitForm = document.getElementById("form");
   submitForm.addEventListener("submit", function (event) {
     event.preventDefault();
     addTodo();
   });
 
-  const saveWeeklySchedule = document.getElementById("weeklyButtonSave");
-  saveWeeklySchedule.addEventListener("click", function (event) {
+  const addRowWeeklyButton = document.getElementById("weeklyAddRowButton");
+  addRowWeeklyButton.addEventListener("click", function (event) {
     event.preventDefault();
-    takeWeeklyValue();
+    addRowWeeklyTable();
+    cekWeeklyInputScroll();
   });
 
-  const saveDailySchedule = document.getElementById("dailyButtonSave");
-  saveDailySchedule.addEventListener("click", function (event) {
+  const addRowDailyButton = document.getElementById("dailyAddRowButton");
+  addRowDailyButton.addEventListener("click", function (event) {
     event.preventDefault();
-    takeDailyValue();
+    addRowDailyTable();
   });
 
-  const editWeekly = document.getElementById("editWeeklySchedule");
-  editWeekly.addEventListener("click", function (event) {
+  const saveDailyForm = document.getElementById("dailyButtonSave");
+  saveDailyForm.addEventListener("click", function (event) {
     event.preventDefault();
-    editWeeklySchedule();
+    addDailySchedule();
   });
 
-  const editDaily = document.getElementById("editDailySchedule");
-  editDaily.addEventListener("click", function (event) {
+  const saveWeeklyForm = document.getElementById("weeklyButtonSave");
+  saveWeeklyForm.addEventListener("click", function (event) {
     event.preventDefault();
-    editDailySchedule();
+    addWeeklySchedule();
   });
 
-  const weeklyAddRowButton = document.getElementById("weeklyAddRowButton");
-  weeklyAddRowButton.addEventListener("click", function (event) {
+  const weeklyResetButton = document.getElementById("weeklyResetButton");
+  weeklyResetButton.addEventListener("click", function (event) {
     event.preventDefault();
-    addInputRowWeeklyTable();
+    resetWeeklyField();
+  });
+
+  const dailyResetButton = document.getElementById("dailyResetButton");
+  dailyResetButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    resetDailyField();
+  });
+
+  const dailyEditButton = document.getElementById("editButtonDaily");
+  dailyEditButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    hideDailyOutput();
+  });
+
+  const weeklyEditButton = document.getElementById("editWeeklySchedule");
+  weeklyEditButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    hideDailyOutput();
+  });
+
+  const toggleTodoList = document.getElementById("toggleTodoList");
+  toggleTodoList.addEventListener("click", function (event) {
+    navbarCatcher(event);
+  });
+
+  const toggleWeeklySchedule = document.getElementById("toggleWeeklySchedule");
+  toggleWeeklySchedule.addEventListener("click", function (event) {
+    navbarCatcher(event);
+  });
+
+  const toggleDailySchedule = document.getElementById("toggleDailySchedule");
+  toggleDailySchedule.addEventListener("click", function (event) {
+    navbarCatcher(event);
   });
 });
