@@ -278,7 +278,7 @@ function resetWeeklyField() {
   }
 }
 
-function resetDailyField() {
+function reseDailyField() {
   const divFieldDailyInput = document.getElementById("inputDailyRow");
   const inputs = divFieldDailyInput.querySelectorAll("input");
 
