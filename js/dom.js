@@ -272,7 +272,7 @@ function cekWeeklyInputScroll() {
 function resetWeeklyField() {
   const textareas = document.querySelectorAll("textarea");
 
-  const confirmationResult = confirm("Want to reset all this field?");
+  const confirmationResult = confirm("Do you want to reset all this field?");
   if (confirmationResult) {
     textareas.forEach((textarea) => (textarea.value = ""));
   }
@@ -282,7 +282,7 @@ function resetDailyField() {
   const divFieldDailyInput = document.getElementById("inputDailyRow");
   const inputs = divFieldDailyInput.querySelectorAll("input");
 
-  const confirmationResult = confirm("Want to reset all this field?");
+  const confirmationResult = confirm("Do you want to reset all this field?");
   if (confirmationResult) {
     inputs.forEach((input) => (input.value = ""));
   }
