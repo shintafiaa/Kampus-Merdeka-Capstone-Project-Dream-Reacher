@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   cekWeeklyInputScroll();
+  defaultView();
 
   const submitForm = document.getElementById("form");
   submitForm.addEventListener("submit", function (event) {
@@ -44,18 +45,6 @@ document.addEventListener("DOMContentLoaded", function () {
     resetDailyField();
   });
 
-  const dailyEditButton = document.getElementById("editButtonDaily");
-  dailyEditButton.addEventListener("click", function (event) {
-    event.preventDefault();
-    hideDailyOutput();
-  });
-
-  const weeklyEditButton = document.getElementById("editWeeklySchedule");
-  weeklyEditButton.addEventListener("click", function (event) {
-    event.preventDefault();
-    hideDailyOutput();
-  });
-
   const toggleTodoList = document.getElementById("toggleTodoList");
   toggleTodoList.addEventListener("click", function (event) {
     navbarCatcher(event);
@@ -69,5 +58,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const toggleDailySchedule = document.getElementById("toggleDailySchedule");
   toggleDailySchedule.addEventListener("click", function (event) {
     navbarCatcher(event);
+  });
+
+  const editWeeklyButton = document.getElementById("editWeeklySchedule");
+  editWeeklyButton.addEventListener("click", function () {
+    showInputHideOutput("WeeklyContainerInput", "WeeklyContainerOutput");
+  });
+
+  const editDailyButton = document.getElementById("editButtonDaily");
+  editDailyButton.addEventListener("click", function () {
+    showInputHideOutput("DailyContainerInput", "DailyContainerOutput");
   });
 });

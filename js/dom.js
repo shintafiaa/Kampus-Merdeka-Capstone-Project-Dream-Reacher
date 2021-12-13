@@ -205,28 +205,57 @@ function addRowDailyTable() {
 }
 
 function addDailySchedule() {
+  clearOutputDailyTable();
   const dailyTodoId = document.getElementById(DAILY_TODO_ID);
 
   const inputDailyContainer = document.getElementById("inputDailyRow");
   const totalChildrenElement = inputDailyContainer.children.length;
-
   for (let step = 0; step < totalChildrenElement - 8; step++) {
     const textDailyInput =
       inputDailyContainer.getElementsByTagName("input")[step].value;
     const cellDaily = makeComponentDailySchedule(textDailyInput);
     dailyTodoId.append(cellDaily);
   }
+
+  totalEachDailyTaskClass = document.querySelectorAll(".eachDailyTask").length;
+  for (let i = 0; i < totalEachDailyTaskClass; i++) {
+    const clickedTarget = document.querySelectorAll(".eachDailyTask");
+    clickedTarget[i].addEventListener("click", function (event) {
+      lineThroughTarget(event);
+    });
+  }
+  showOutputHideInput("DailyContainerInput", "DailyContainerOutput");
 }
 
 function makeComponentDailySchedule(data) {
   const newDiv = document.createElement("div");
   newDiv.classList.add("grid-item");
-  newDiv.innerText = data;
+
+  const newDivContent = document.createElement("div");
+  newDivContent.classList.add("eachDailyTask");
+
+  const newP = document.createElement("p");
+  newP.innerText = data;
+  newDivContent.appendChild(newP);
+  newDiv.appendChild(newDivContent);
 
   return newDiv;
 }
 
+function clearOutputDailyTable() {
+  const idDailyOutput = document.getElementById("outputItemDailyData");
+  const totalChildrenElement = idDailyOutput.children.length;
+
+  const outputDailyTask = idDailyOutput.querySelectorAll(".grid-item");
+  for (let step = 0; step < totalChildrenElement; step++) {
+    if (step > 7 && step < totalChildrenElement) {
+      outputDailyTask[step].remove();
+    }
+  }
+}
+
 function addWeeklySchedule() {
+  clearOutputWeeklyTable();
   const weeklyTodoId = document.getElementById(WEEKLY_TODO_ID);
 
   const inputWeeklyContainer = document.getElementById("inputWeeklyRow");
@@ -239,7 +268,7 @@ function addWeeklySchedule() {
     if (textWeeklyInput != "") {
       const templateSplit = textWeeklyInput
         .split(",")
-        .map((perTask) => `<div class="eachWeeklyTask">${perTask}</div>`)
+        .map((perTask) => `<div class="eachWeeklyTask"><p>${perTask}</p></div>`)
         .join("\n");
       const cellWeekly = makeComponentWeeklySchedule(templateSplit);
       weeklyTodoId.append(cellWeekly);
@@ -247,6 +276,29 @@ function addWeeklySchedule() {
       const cellWeekly = makeComponentWeeklySchedule(textWeeklyInput);
       weeklyTodoId.append(cellWeekly);
     }
+  }
+
+  totalEachWeeklyTaskClass =
+    document.querySelectorAll(".eachWeeklyTask").length;
+  for (let i = 0; i < totalEachWeeklyTaskClass; i++) {
+    const clickedTarget = document.querySelectorAll(".eachWeeklyTask");
+    clickedTarget[i].addEventListener("click", function (event) {
+      lineThroughTarget(event);
+    });
+  }
+
+  showOutputHideInput("WeeklyContainerInput", "WeeklyContainerOutput");
+  // deleteRow();
+}
+
+function lineThroughTarget(targetParameter) {
+  const targetVariable = targetParameter.target;
+  const divVariable = targetVariable.parentElement;
+  const pTarget = divVariable.querySelector("p");
+  if (pTarget.style.textDecoration === "line-through") {
+    pTarget.style.textDecoration = "none";
+  } else {
+    pTarget.style.textDecoration = "line-through";
   }
 }
 
@@ -256,6 +308,18 @@ function makeComponentWeeklySchedule(data) {
   newDiv.innerHTML = data;
 
   return newDiv;
+}
+
+function clearOutputWeeklyTable() {
+  const idWeeklyOutput = document.getElementById("outputItemWeeklyData");
+  const totalChildrenElement = idWeeklyOutput.children.length;
+
+  const outputWeeklyTask = idWeeklyOutput.querySelectorAll(".grid-item");
+  for (let step = 0; step < totalChildrenElement; step++) {
+    if (step > 7 && step < totalChildrenElement) {
+      outputWeeklyTask[step].remove();
+    }
+  }
 }
 
 function cekWeeklyInputScroll() {
@@ -287,3 +351,54 @@ function resetDailyField() {
     inputs.forEach((input) => (input.value = ""));
   }
 }
+
+function showOutputHideInput(inputId, outputId) {
+  const getInputId = document.getElementById(inputId);
+  const getOutputId = document.getElementById(outputId);
+
+  getInputId.style.display = "none";
+  getOutputId.style.display = "block";
+}
+
+function showInputHideOutput(inputId, outputId) {
+  const getInputId = document.getElementById(inputId);
+  const getOutputId = document.getElementById(outputId);
+
+  getInputId.style.display = "block";
+  getOutputId.style.display = "none";
+}
+
+function defaultView() {
+  const inputListTodo = document.getElementById("todoListInput");
+  const outputListTodo = document.getElementById("todoListView");
+  const inputWeeklyPlanner = document.getElementById("WeeklyContainerInput");
+  const outputWeeklyPlanner = document.getElementById("WeeklyContainerOutput");
+  const inputDailyPlanner = document.getElementById("DailyContainerInput");
+  const outputDailyPlanner = document.getElementById("DailyContainerOutput");
+
+  inputListTodo.style.display = "block";
+  outputListTodo.style.display = "block";
+  inputWeeklyPlanner.style.display = "none";
+  outputWeeklyPlanner.style.display = "block";
+  inputDailyPlanner.style.display = "none";
+  outputDailyPlanner.style.display = "block";
+}
+
+// function deleteRow() {
+//   idInputVar = document.getElementById("inputWeeklyRow");
+
+//   const totalChildrenElements = idInputVar.children.length;
+//   const inputFieldElements = document.querySelectorAll("textarea");
+
+//   for (let i = 0; i < totalChildrenElements; i++) {
+//     const fieldValue = inputFieldElements[i];
+//     if (i % 8 == 0) {
+//       if (fieldValue == "delete") {
+//         for (let index = i; index < i + 8; index++) {
+//           const fieldElement1 = inputFieldElements[index];
+//           console.log(fieldElement1.parentNode);
+//         }
+//       }
+//     }
+//   }
+// }
