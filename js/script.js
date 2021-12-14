@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  cekWeeklyInputScroll();
   defaultView();
-  offsetElement();
 
   const submitForm = document.getElementById("form");
   submitForm.addEventListener("submit", function (event) {
@@ -13,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
   addRowWeeklyButton.addEventListener("click", function (event) {
     event.preventDefault();
     addRowWeeklyTable();
-    cekWeeklyInputScroll();
   });
 
   const addRowDailyButton = document.getElementById("dailyAddRowButton");

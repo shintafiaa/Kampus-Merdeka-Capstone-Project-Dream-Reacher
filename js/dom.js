@@ -220,6 +220,7 @@ function addRowWeeklyTable() {
     newDiv.appendChild(newTextArea);
     inputItemWeeklyData.appendChild(newDiv);
   }
+  checkScroll("inputWeeklyRow");
 }
 
 function addRowDailyTable() {
@@ -235,6 +236,7 @@ function addRowDailyTable() {
     newDiv.appendChild(newTextArea);
     inputItemWeeklyData.appendChild(newDiv);
   }
+  checkScroll("inputDailyRow");
 }
 
 function addDailySchedule() {
@@ -251,13 +253,22 @@ function addDailySchedule() {
     dailyTodoId.append(cellDaily);
   }
 
-  totalEachDailyTaskClass = document.querySelectorAll(".eachDailyTask").length;
-  for (let i = 0; i < totalEachDailyTaskClass; i++) {
-    const clickedTarget = document.querySelectorAll(".eachDailyTask");
-    clickedTarget[i].addEventListener("click", function (event) {
-      lineThroughTarget(event);
+  const elementLineThroughTarget = document.querySelectorAll(".eachDailyTask");
+  totalElementTask = elementLineThroughTarget.length;
+  for (let i = 0; i < totalElementTask; i++) {
+    elementLineThroughTarget[i].addEventListener("click", function (event) {
+      lineThroughText(event);
     });
+
+    elementLineThroughTarget[i].addEventListener(
+      "contextmenu",
+      function (event) {
+        highlightTextDaily(event);
+      }
+    );
   }
+
+  checkScroll("outputItemDailyData");
   showOutputHideInput("DailyContainerInput", "DailyContainerOutput");
 }
 
@@ -274,6 +285,39 @@ function makeComponentDailySchedule(data) {
   newDiv.appendChild(newDivContent);
 
   return newDiv;
+}
+
+function lineThroughText(targetClicked) {
+  const targetElement = targetClicked.target;
+  if (targetElement.style.textDecoration === "line-through") {
+    targetElement.style.textDecoration = "none";
+  } else {
+    targetElement.style.textDecoration = "line-through";
+  }
+}
+
+function highlightTextDaily(targetClicked) {
+  const targetElement = targetClicked.target;
+  const divEachDailyTask = targetElement.parentElement.parentElement;
+  if (divEachDailyTask.style.backgroundColor !== "tomato") {
+    divEachDailyTask.style.backgroundColor = "tomato";
+  } else {
+    divEachDailyTask.style.backgroundColor = "#d8ebed";
+  }
+}
+
+function highlightTextWeekly(targetClicked) {
+  const targetElement = targetClicked.target;
+  const tagTargetElement = targetElement.tagName;
+  const divEachDailyTask = targetElement.parentElement;
+  if (targetElement.tagName === "P") {
+    console.log(tagTargetElement);
+    if (divEachDailyTask.style.backgroundColor !== "tomato") {
+      divEachDailyTask.style.backgroundColor = "tomato";
+    } else {
+      divEachDailyTask.style.backgroundColor = "#d8ebed";
+    }
+  }
 }
 
 function clearOutputDailyTable() {
@@ -313,27 +357,23 @@ function addWeeklySchedule() {
     }
   }
 
-  totalEachWeeklyTaskClass =
-    document.querySelectorAll(".eachWeeklyTask").length;
-  for (let i = 0; i < totalEachWeeklyTaskClass; i++) {
-    const clickedTarget = document.querySelectorAll(".eachWeeklyTask");
-    clickedTarget[i].addEventListener("click", function (event) {
-      lineThroughTarget(event);
+  const elementLineThroughTarget = document.querySelectorAll(".eachWeeklyTask");
+  totalElementTask = elementLineThroughTarget.length;
+  for (let i = 0; i < totalElementTask; i++) {
+    elementLineThroughTarget[i].addEventListener("click", function (event) {
+      lineThroughText(event);
     });
+
+    elementLineThroughTarget[i].addEventListener(
+      "contextmenu",
+      function (event) {
+        highlightTextWeekly(event);
+      }
+    );
   }
 
+  checkScroll("outputItemWeeklyData");
   showOutputHideInput("WeeklyContainerInput", "WeeklyContainerOutput");
-}
-
-function lineThroughTarget(targetParameter) {
-  const targetVariable = targetParameter.target;
-  const divVariable = targetVariable.parentElement;
-  const pTarget = divVariable.querySelector("p");
-  if (pTarget.style.textDecoration === "line-through") {
-    pTarget.style.textDecoration = "none";
-  } else {
-    pTarget.style.textDecoration = "line-through";
-  }
 }
 
 function makeComponentWeeklySchedule(data) {
@@ -356,14 +396,13 @@ function clearOutputWeeklyTable() {
   }
 }
 
-function cekWeeklyInputScroll() {
-  const idWeeklyInputContainer = document.getElementById("inputWeeklyRow");
-  const tagDivWeeklyInput = document.querySelector(".grid-container");
-  const totalChildrenElement = idWeeklyInputContainer.children.length;
-  if (totalChildrenElement < 9) {
-    tagDivWeeklyInput.classList.remove("weekly-input");
+function checkScroll(id) {
+  const gridContainer = document.getElementById(id);
+  const totalChildren = gridContainer.children.length;
+  if (totalChildren > 9) {
+    gridContainer.classList.add("scroll");
   } else {
-    tagDivWeeklyInput.classList.add("weekly-input");
+    gridContainer.classList.remove("scroll");
   }
 }
 
@@ -434,14 +473,4 @@ function deleteRow(id, box) {
     }
     i = i + 8;
   }
-}
-
-function offsetElement() {
-  const idElement = document.getElementById("inputWeeklyRow");
-  const idContainer = document.getElementById("WeeklyContainerInput");
-
-  let widthElement = idElement.offsetWidth;
-  let widthContainer = idContainer.offsetWidth;
-  console.log(widthElement);
-  console.log(widthContainer);
 }
