@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   cekWeeklyInputScroll();
   defaultView();
+  offsetElement();
 
   const submitForm = document.getElementById("form");
   submitForm.addEventListener("submit", function (event) {
@@ -61,12 +62,14 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   const editWeeklyButton = document.getElementById("editWeeklySchedule");
-  editWeeklyButton.addEventListener("click", function () {
+  editWeeklyButton.addEventListener("click", function (event) {
+    event.preventDefault();
     showInputHideOutput("WeeklyContainerInput", "WeeklyContainerOutput");
   });
 
   const editDailyButton = document.getElementById("editButtonDaily");
-  editDailyButton.addEventListener("click", function () {
+  editDailyButton.addEventListener("click", function (event) {
+    event.preventDefault();
     showInputHideOutput("DailyContainerInput", "DailyContainerOutput");
   });
 });

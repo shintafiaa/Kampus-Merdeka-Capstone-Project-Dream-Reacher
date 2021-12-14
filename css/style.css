@@ -14,6 +14,10 @@ h1 {
   margin-top: 30px;
 }
 
+.guidance {
+  float: left;
+}
+
 header {
   background: #3c9ca4;
   padding: 16px;
@@ -21,9 +25,13 @@ header {
 }
 .navbar {
   overflow: hidden;
+  margin-right: -15px;
 }
 
 .navbar a {
+  color: #f2f2f2;
+  background: #1d4a4e;
+  margin-top: 40px;
   float: right;
   text-align: center;
   padding: 14px 16px;
@@ -34,11 +42,6 @@ header {
 .navbar .active {
   color: black;
   background: #ddd;
-}
-
-.navbar a {
-  color: #f2f2f2;
-  background: #1d4a4e;
 }
 
 .navbar a:hover {
@@ -210,15 +213,9 @@ input[type="date"] {
   text-align: center;
 }
 
-/* .container .grid-container-button {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto auto auto auto auto;
-  background-color: #3c9ca4;
-  padding: 2px;
-} */
-
 .grid-container {
   display: grid;
+  width: 100%;
   grid-template-columns: auto auto auto auto auto auto auto auto;
   background-color: #3c9ca4;
   padding: 2px;
@@ -248,4 +245,20 @@ input {
 
 .weekly-input {
   overflow: scroll;
+}
+
+@media only screen and (max-width: 1100px) {
+  .guidance {
+    float: none;
+  }
+}
+
+.footer {
+  margin-top: 100px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #3c9ca4;
+  color: white;
+  text-align: center;
 }

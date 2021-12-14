@@ -21,7 +21,7 @@ function navbarCatcher(event) {
       idTarget
     );
   } else if (event.target.id === "toggleWeeklySchedule") {
-    const expandSection1 = "WeeklyContainerInput";
+    const collapse0 = "WeeklyContainerInput";
     const expandSection2 = "WeeklyContainerOutput";
     const collapse1 = "todoListInput";
     const collapse2 = "todoListView";
@@ -29,7 +29,7 @@ function navbarCatcher(event) {
     const collapse4 = "DailyContainerOutput";
     const idTarget = "toggleWeeklySchedule";
     return toggleSectionNavbar(
-      expandSection1,
+      collapse0,
       expandSection2,
       collapse1,
       collapse2,
@@ -38,15 +38,15 @@ function navbarCatcher(event) {
       idTarget
     );
   } else {
-    const expandSection1 = "DailyContainerInput";
+    const collapse0 = "DailyContainerInput";
     const expandSection2 = "DailyContainerOutput";
-    const collapse1 = "WeeklyContainerInput";
-    const collapse2 = "WeeklyContainerOutput";
-    const collapse3 = "todoListInput";
-    const collapse4 = "todoListView";
+    const collapse1 = "todoListInput";
+    const collapse2 = "todoListView";
+    const collapse3 = "WeeklyContainerInput";
+    const collapse4 = "WeeklyContainerOutput";
     const idTarget = "toggleDailySchedule";
     return toggleSectionNavbar(
-      expandSection1,
+      collapse0,
       expandSection2,
       collapse1,
       collapse2,
@@ -68,35 +68,68 @@ function toggleSectionNavbar(id1, id2, id3, id4, id5, id6, idTarget) {
 
   const navbarTag = document.querySelector(".navbar");
 
-  if (
-    divId1.style.display === "block" &&
-    divId3.style.display === "none" &&
-    divId5.style.display === "none"
-  ) {
-    divId1.style.display = "block";
-    divId2.style.display = "block";
-    divId3.style.display = "block";
-    divId4.style.display = "block";
-    divId5.style.display = "block";
-    divId6.style.display = "block";
+  if (divId1.id != "todoListInput") {
+    if (
+      divId2.style.display === "block" &&
+      divId4.style.display === "none" &&
+      divId6.style.display === "none"
+    ) {
+      divId1.style.display = "none";
+      divId2.style.display = "block";
+      divId3.style.display = "block";
+      divId4.style.display = "block";
+      divId5.style.display = "none";
+      divId6.style.display = "block";
 
-    for (let step = 0; step < 3; step++) {
-      const aNavButton = navbarTag.getElementsByTagName("a")[step];
-      aNavButton.classList.remove("active");
+      for (let step = 0; step < 3; step++) {
+        const aNavButton = navbarTag.getElementsByTagName("a")[step];
+        aNavButton.classList.remove("active");
+      }
+    } else {
+      divId1.style.display = "none";
+      divId2.style.display = "block";
+      divId3.style.display = "none";
+      divId4.style.display = "none";
+      divId5.style.display = "none";
+      divId6.style.display = "none";
+
+      for (let step = 0; step < 3; step++) {
+        const aNavButton = navbarTag.getElementsByTagName("a")[step];
+        aNavButton.classList.remove("active");
+      }
+      id7Target.classList.add("active");
     }
   } else {
-    divId1.style.display = "block";
-    divId2.style.display = "block";
-    divId3.style.display = "none";
-    divId4.style.display = "none";
-    divId5.style.display = "none";
-    divId6.style.display = "none";
+    if (
+      divId2.style.display === "block" &&
+      divId4.style.display === "none" &&
+      divId6.style.display === "none"
+    ) {
+      divId1.style.display = "block";
+      divId2.style.display = "block";
+      divId3.style.display = "none";
+      divId4.style.display = "block";
+      divId5.style.display = "none";
+      divId6.style.display = "block";
 
-    for (let step = 0; step < 3; step++) {
-      const aNavButton = navbarTag.getElementsByTagName("a")[step];
-      aNavButton.classList.remove("active");
+      for (let step = 0; step < 3; step++) {
+        const aNavButton = navbarTag.getElementsByTagName("a")[step];
+        aNavButton.classList.remove("active");
+      }
+    } else {
+      divId1.style.display = "block";
+      divId2.style.display = "block";
+      divId3.style.display = "none";
+      divId4.style.display = "none";
+      divId5.style.display = "none";
+      divId6.style.display = "none";
+
+      for (let step = 0; step < 3; step++) {
+        const aNavButton = navbarTag.getElementsByTagName("a")[step];
+        aNavButton.classList.remove("active");
+      }
+      id7Target.classList.add("active");
     }
-    id7Target.classList.add("active");
   }
 }
 
@@ -205,6 +238,7 @@ function addRowDailyTable() {
 }
 
 function addDailySchedule() {
+  deleteRow("inputDailyRow", "input");
   clearOutputDailyTable();
   const dailyTodoId = document.getElementById(DAILY_TODO_ID);
 
@@ -255,6 +289,7 @@ function clearOutputDailyTable() {
 }
 
 function addWeeklySchedule() {
+  deleteRow("inputWeeklyRow", "textarea");
   clearOutputWeeklyTable();
   const weeklyTodoId = document.getElementById(WEEKLY_TODO_ID);
 
@@ -288,7 +323,6 @@ function addWeeklySchedule() {
   }
 
   showOutputHideInput("WeeklyContainerInput", "WeeklyContainerOutput");
-  // deleteRow();
 }
 
 function lineThroughTarget(targetParameter) {
@@ -384,21 +418,30 @@ function defaultView() {
   outputDailyPlanner.style.display = "block";
 }
 
-// function deleteRow() {
-//   idInputVar = document.getElementById("inputWeeklyRow");
+function deleteRow(id, box) {
+  const inputId = document.getElementById(id);
+  const inputField = inputId.querySelectorAll(box);
+  const totalChildrenElement = inputField.length;
+  let i = 0;
+  while (i < totalChildrenElement) {
+    const valueInputField = inputField[i].value;
+    const lower = valueInputField.toLowerCase();
+    if (i % 8 == 0 && lower == "delete") {
+      for (let j = i; j < i + 8; j++) {
+        const elementInputField = inputField[j];
+        elementInputField.parentElement.remove();
+      }
+    }
+    i = i + 8;
+  }
+}
 
-//   const totalChildrenElements = idInputVar.children.length;
-//   const inputFieldElements = document.querySelectorAll("textarea");
+function offsetElement() {
+  const idElement = document.getElementById("inputWeeklyRow");
+  const idContainer = document.getElementById("WeeklyContainerInput");
 
-//   for (let i = 0; i < totalChildrenElements; i++) {
-//     const fieldValue = inputFieldElements[i];
-//     if (i % 8 == 0) {
-//       if (fieldValue == "delete") {
-//         for (let index = i; index < i + 8; index++) {
-//           const fieldElement1 = inputFieldElements[index];
-//           console.log(fieldElement1.parentNode);
-//         }
-//       }
-//     }
-//   }
-// }
+  let widthElement = idElement.offsetWidth;
+  let widthContainer = idContainer.offsetWidth;
+  console.log(widthElement);
+  console.log(widthContainer);
+}
