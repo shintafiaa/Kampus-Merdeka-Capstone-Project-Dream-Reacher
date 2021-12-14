@@ -263,6 +263,7 @@ function addDailySchedule() {
     elementLineThroughTarget[i].addEventListener(
       "contextmenu",
       function (event) {
+        event.preventDefault();
         highlightTextDaily(event);
       }
     );
@@ -367,6 +368,7 @@ function addWeeklySchedule() {
     elementLineThroughTarget[i].addEventListener(
       "contextmenu",
       function (event) {
+        event.preventDefault();
         highlightTextWeekly(event);
       }
     );
