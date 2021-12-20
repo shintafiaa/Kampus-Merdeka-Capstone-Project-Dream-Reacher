@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
   submitForm.addEventListener("submit", function (event) {
     event.preventDefault();
     addTodo();
+    postDataTodos();
   });
 
   const addRowWeeklyButton = document.getElementById("weeklyAddRowButton");
@@ -18,17 +19,21 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault();
     addRowDailyTable();
   });
-
+//
   const saveDailyForm = document.getElementById("dailyButtonSave");
   saveDailyForm.addEventListener("click", function (event) {
     event.preventDefault();
     addDailySchedule();
+    postDataInput(storageDailyInput,"inputDailyRow","inputDailyData")
+    postDataOutput(storageDaily,DAILY_TODO_ID)
   });
 
   const saveWeeklyForm = document.getElementById("weeklyButtonSave");
   saveWeeklyForm.addEventListener("click", function (event) {
     event.preventDefault();
     addWeeklySchedule();
+    postDataInput(storageWeeklyInput,"inputWeeklyRow","inputWeekData")
+    postDataOutput(storageWeekly,WEEKLY_TODO_ID)
   });
 
   const weeklyResetButton = document.getElementById("weeklyResetButton");

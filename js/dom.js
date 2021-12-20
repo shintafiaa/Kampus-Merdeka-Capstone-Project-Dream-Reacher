@@ -188,12 +188,14 @@ function markAsCompletedTodoList(taskElement) {
 function createCheckButton() {
   return createButton("check-button", function (event) {
     markAsCompletedTodoList(event.target.parentElement);
+    postDataTodos()
   });
 }
 
 function createTrashButton() {
   return createButton("trash-button", function (event) {
     removeTask(event.target.parentElement);
+    postDataTodos()
   });
 }
 
@@ -232,6 +234,7 @@ function addRowDailyTable() {
 
     const newTextArea = document.createElement("input");
     newTextArea.setAttribute("size", "12.5");
+    newTextArea.classList.add("inputDailyData");
     newDiv.classList.add("dailyData");
     newDiv.appendChild(newTextArea);
     inputItemWeeklyData.appendChild(newDiv);
@@ -249,8 +252,17 @@ function addDailySchedule() {
   for (let step = 0; step < totalChildrenElement - 8; step++) {
     const textDailyInput =
       inputDailyContainer.getElementsByTagName("input")[step].value;
-    const cellDaily = makeComponentDailySchedule(textDailyInput);
-    dailyTodoId.append(cellDaily);
+    if (textDailyInput != "") {
+      const templateSplit = textDailyInput
+        .split(",")
+        .map((perTask) => `<div class="eachDailyTask"><p>${perTask}</p></div>`)
+        .join("\n");
+      const cellDaily = makeComponentDailySchedule(templateSplit);
+      dailyTodoId.append(cellDaily);
+    }else{
+      const cellDaily = makeComponentDailySchedule(textDailyInput);
+      dailyTodoId.append(cellDaily);
+    }
   }
 
   const elementLineThroughTarget = document.querySelectorAll(".eachDailyTask");
@@ -258,6 +270,7 @@ function addDailySchedule() {
   for (let i = 0; i < totalElementTask; i++) {
     elementLineThroughTarget[i].addEventListener("click", function (event) {
       lineThroughText(event);
+      postDataOutput(storageDaily,DAILY_TODO_ID)
     });
 
     elementLineThroughTarget[i].addEventListener(
@@ -265,6 +278,7 @@ function addDailySchedule() {
       function (event) {
         event.preventDefault();
         highlightTextDaily(event);
+        postDataOutput(storageDaily,DAILY_TODO_ID)
       }
     );
   }
@@ -276,14 +290,7 @@ function addDailySchedule() {
 function makeComponentDailySchedule(data) {
   const newDiv = document.createElement("div");
   newDiv.classList.add("grid-item");
-
-  const newDivContent = document.createElement("div");
-  newDivContent.classList.add("eachDailyTask");
-
-  const newP = document.createElement("p");
-  newP.innerText = data;
-  newDivContent.appendChild(newP);
-  newDiv.appendChild(newDivContent);
+  newDiv.innerHTML = data;
 
   return newDiv;
 }
@@ -357,12 +364,13 @@ function addWeeklySchedule() {
       weeklyTodoId.append(cellWeekly);
     }
   }
-
+  
   const elementLineThroughTarget = document.querySelectorAll(".eachWeeklyTask");
   totalElementTask = elementLineThroughTarget.length;
   for (let i = 0; i < totalElementTask; i++) {
     elementLineThroughTarget[i].addEventListener("click", function (event) {
       lineThroughText(event);
+      postDataOutput(storageWeekly,WEEKLY_TODO_ID)
     });
 
     elementLineThroughTarget[i].addEventListener(
@@ -370,6 +378,7 @@ function addWeeklySchedule() {
       function (event) {
         event.preventDefault();
         highlightTextWeekly(event);
+        postDataOutput(storageWeekly,WEEKLY_TODO_ID)
       }
     );
   }

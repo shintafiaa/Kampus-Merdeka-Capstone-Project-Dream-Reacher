@@ -228,7 +228,7 @@ input[type="date"] {
   padding: 3px;
 }
 
-.eachWeeklyTask {
+.eachWeeklyTask,.eachDailyTask {
   border-width: 1.5px;
   border-style: solid;
   border-color: #3c9ca4;
