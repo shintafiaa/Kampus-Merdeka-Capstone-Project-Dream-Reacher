@@ -19,33 +19,45 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault();
     addRowDailyTable();
   });
-//
+  //
   const saveDailyForm = document.getElementById("dailyButtonSave");
   saveDailyForm.addEventListener("click", function (event) {
     event.preventDefault();
     addDailySchedule();
-    postDataInput(storageDailyInput,"inputDailyRow","inputDailyData")
-    postDataOutput(storageDaily,DAILY_TODO_ID)
+    postDataInput(storageDailyInput, "inputDailyRow", "inputDailyData");
+    postDataOutput(storageDaily, DAILY_TODO_ID);
   });
 
   const saveWeeklyForm = document.getElementById("weeklyButtonSave");
   saveWeeklyForm.addEventListener("click", function (event) {
     event.preventDefault();
     addWeeklySchedule();
-    postDataInput(storageWeeklyInput,"inputWeeklyRow","inputWeekData")
-    postDataOutput(storageWeekly,WEEKLY_TODO_ID)
+    postDataInput(storageWeeklyInput, "inputWeeklyRow", "inputWeekData");
+    postDataOutput(storageWeekly, WEEKLY_TODO_ID);
   });
 
   const weeklyResetButton = document.getElementById("weeklyResetButton");
   weeklyResetButton.addEventListener("click", function (event) {
     event.preventDefault();
-    resetWeeklyField();
+    resetField("inputWeeklyRow");
   });
 
   const dailyResetButton = document.getElementById("dailyResetButton");
   dailyResetButton.addEventListener("click", function (event) {
     event.preventDefault();
-    resetDailyField();
+    resetField("inputDailyRow");
+  });
+
+  const weeklyCancelButton = document.getElementById("weeklyCancelButton");
+  weeklyCancelButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    cancelChanges("WeeklyContainerInput", "WeeklyContainerOutput");
+  });
+
+  const dailyCancelButton = document.getElementById("dailyCancelButton");
+  dailyCancelButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    cancelChanges("DailyContainerInput", "DailyContainerOutput");
   });
 
   const toggleTodoList = document.getElementById("toggleTodoList");

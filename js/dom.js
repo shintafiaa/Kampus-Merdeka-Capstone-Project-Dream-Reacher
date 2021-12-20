@@ -234,7 +234,7 @@ function addRowDailyTable() {
 
     const newTextArea = document.createElement("textarea");
     newTextArea.setAttribute("name", "message");
-    newTextArea.setAttribute("class", "inputWeekData");
+    newTextArea.setAttribute("class", "inputDailyData");
     if (step != 0) {
       newTextArea.setAttribute(
         "placeholder",
@@ -264,22 +264,11 @@ function lineThroughText(targetClicked) {
   }
 }
 
-function highlightTextDaily(targetClicked) {
-  const targetElement = targetClicked.target;
-  const divEachDailyTask = targetElement.parentElement;
-  if (divEachDailyTask.style.backgroundColor !== "tomato") {
-    divEachDailyTask.style.backgroundColor = "tomato";
-  } else {
-    divEachDailyTask.style.backgroundColor = "#d8ebed";
-  }
-}
-
-function highlightTextWeekly(targetClicked) {
+function highlightText(targetClicked) {
   const targetElement = targetClicked.target;
   const tagTargetElement = targetElement.tagName;
   const divEachDailyTask = targetElement.parentElement;
   if (targetElement.tagName === "P") {
-    console.log(tagTargetElement);
     if (divEachDailyTask.style.backgroundColor !== "tomato") {
       divEachDailyTask.style.backgroundColor = "tomato";
     } else {
@@ -310,7 +299,7 @@ function addWeeklySchedule() {
 
   for (let step = 0; step < totalChildrenElement - 8; step++) {
     const textWeeklyInput =
-      document.getElementsByTagName("textarea")[step].value;
+      document.getElementsByClassName("inputWeekData")[step].value;
 
     if (textWeeklyInput != "") {
       const templateSplit = textWeeklyInput
@@ -337,7 +326,7 @@ function addWeeklySchedule() {
       "contextmenu",
       function (event) {
         event.preventDefault();
-        highlightTextWeekly(event);
+        highlightText(event);
         postDataOutput(storageWeekly, WEEKLY_TODO_ID);
       }
     );
@@ -357,7 +346,7 @@ function addDailySchedule() {
 
   for (let step = 0; step < totalChildrenElement - 8; step++) {
     const textDailyInput =
-      inputDailyContainer.getElementsByTagName("textarea")[step].value;
+      inputDailyContainer.getElementsByClassName("inputDailyData")[step].value;
 
     if (textDailyInput != "") {
       const templateSplit = textDailyInput
@@ -384,7 +373,7 @@ function addDailySchedule() {
       "contextmenu",
       function (event) {
         event.preventDefault();
-        highlightTextDaily(event);
+        highlightText(event);
         postDataOutput(storageDaily, DAILY_TODO_ID);
       }
     );
@@ -424,27 +413,33 @@ function checkScroll(id) {
   }
 }
 
-function resetWeeklyField() {
-  const divFieldWeeklyInput = document.getElementById("inputWeeklyRow");
+function resetField(id) {
+  const divFieldWeeklyInput = document.getElementById(id);
   const inputs = divFieldWeeklyInput.querySelectorAll("textarea");
 
   const confirmationResult = confirm("Do you want to reset all this field?");
   if (confirmationResult) {
-    textareas.forEach((textarea) => (textarea.value = ""));
-  }
-}
-
-function resetDailyField() {
-  const divFieldDailyInput = document.getElementById("inputDailyRow");
-  const inputs = divFieldDailyInput.querySelectorAll("textarea");
-
-  const confirmationResult = confirm("Do you want to reset all this field?");
-  if (confirmationResult) {
-    inputs.forEach((textarea) => (input.value = ""));
+    inputs.forEach((textarea) => (textarea.value = ""));
   }
 }
 
 function showOutputHideInput(inputId, outputId) {
+  const getInputId = document.getElementById(inputId);
+  const getOutputId = document.getElementById(outputId);
+
+  getInputId.style.display = "none";
+  getOutputId.style.display = "block";
+}
+
+function showOutputHideInput(inputId, outputId) {
+  const getInputId = document.getElementById(inputId);
+  const getOutputId = document.getElementById(outputId);
+
+  getInputId.style.display = "none";
+  getOutputId.style.display = "block";
+}
+
+function cancelChanges(inputId, outputId) {
   const getInputId = document.getElementById(inputId);
   const getOutputId = document.getElementById(outputId);
 
