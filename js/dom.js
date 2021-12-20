@@ -188,14 +188,14 @@ function markAsCompletedTodoList(taskElement) {
 function createCheckButton() {
   return createButton("check-button", function (event) {
     markAsCompletedTodoList(event.target.parentElement);
-    postDataTodos()
+    postDataTodos();
   });
 }
 
 function createTrashButton() {
   return createButton("trash-button", function (event) {
     removeTask(event.target.parentElement);
-    postDataTodos()
+    postDataTodos();
   });
 }
 
@@ -226,65 +226,25 @@ function addRowWeeklyTable() {
 }
 
 function addRowDailyTable() {
-  const inputItemWeeklyData = document.getElementById("inputDailyRow");
+  const inputItemDailyData = document.getElementById("inputDailyRow");
 
   for (let step = 0; step < 8; step++) {
     const newDiv = document.createElement("div");
     newDiv.classList.add("grid-item");
 
-    const newTextArea = document.createElement("input");
-    newTextArea.setAttribute("size", "12.5");
-    newTextArea.classList.add("inputDailyData");
-    newDiv.classList.add("dailyData");
+    const newTextArea = document.createElement("textarea");
+    newTextArea.setAttribute("name", "message");
+    newTextArea.setAttribute("class", "inputWeekData");
+    if (step != 0) {
+      newTextArea.setAttribute(
+        "placeholder",
+        "Use comma (,) to add new task per cell"
+      );
+    }
     newDiv.appendChild(newTextArea);
-    inputItemWeeklyData.appendChild(newDiv);
+    inputItemDailyData.appendChild(newDiv);
   }
   checkScroll("inputDailyRow");
-}
-
-function addDailySchedule() {
-  deleteRow("inputDailyRow", "input");
-  clearOutputDailyTable();
-  const dailyTodoId = document.getElementById(DAILY_TODO_ID);
-
-  const inputDailyContainer = document.getElementById("inputDailyRow");
-  const totalChildrenElement = inputDailyContainer.children.length;
-  for (let step = 0; step < totalChildrenElement - 8; step++) {
-    const textDailyInput =
-      inputDailyContainer.getElementsByTagName("input")[step].value;
-    if (textDailyInput != "") {
-      const templateSplit = textDailyInput
-        .split(",")
-        .map((perTask) => `<div class="eachDailyTask"><p>${perTask}</p></div>`)
-        .join("\n");
-      const cellDaily = makeComponentDailySchedule(templateSplit);
-      dailyTodoId.append(cellDaily);
-    }else{
-      const cellDaily = makeComponentDailySchedule(textDailyInput);
-      dailyTodoId.append(cellDaily);
-    }
-  }
-
-  const elementLineThroughTarget = document.querySelectorAll(".eachDailyTask");
-  totalElementTask = elementLineThroughTarget.length;
-  for (let i = 0; i < totalElementTask; i++) {
-    elementLineThroughTarget[i].addEventListener("click", function (event) {
-      lineThroughText(event);
-      postDataOutput(storageDaily,DAILY_TODO_ID)
-    });
-
-    elementLineThroughTarget[i].addEventListener(
-      "contextmenu",
-      function (event) {
-        event.preventDefault();
-        highlightTextDaily(event);
-        postDataOutput(storageDaily,DAILY_TODO_ID)
-      }
-    );
-  }
-
-  checkScroll("outputItemDailyData");
-  showOutputHideInput("DailyContainerInput", "DailyContainerOutput");
 }
 
 function makeComponentDailySchedule(data) {
@@ -306,7 +266,7 @@ function lineThroughText(targetClicked) {
 
 function highlightTextDaily(targetClicked) {
   const targetElement = targetClicked.target;
-  const divEachDailyTask = targetElement.parentElement.parentElement;
+  const divEachDailyTask = targetElement.parentElement;
   if (divEachDailyTask.style.backgroundColor !== "tomato") {
     divEachDailyTask.style.backgroundColor = "tomato";
   } else {
@@ -364,13 +324,13 @@ function addWeeklySchedule() {
       weeklyTodoId.append(cellWeekly);
     }
   }
-  
+
   const elementLineThroughTarget = document.querySelectorAll(".eachWeeklyTask");
   totalElementTask = elementLineThroughTarget.length;
   for (let i = 0; i < totalElementTask; i++) {
     elementLineThroughTarget[i].addEventListener("click", function (event) {
       lineThroughText(event);
-      postDataOutput(storageWeekly,WEEKLY_TODO_ID)
+      postDataOutput(storageWeekly, WEEKLY_TODO_ID);
     });
 
     elementLineThroughTarget[i].addEventListener(
@@ -378,13 +338,60 @@ function addWeeklySchedule() {
       function (event) {
         event.preventDefault();
         highlightTextWeekly(event);
-        postDataOutput(storageWeekly,WEEKLY_TODO_ID)
+        postDataOutput(storageWeekly, WEEKLY_TODO_ID);
       }
     );
   }
 
   checkScroll("outputItemWeeklyData");
   showOutputHideInput("WeeklyContainerInput", "WeeklyContainerOutput");
+}
+
+function addDailySchedule() {
+  deleteRow("inputDailyRow", "textArea");
+  clearOutputDailyTable();
+  const dailyTodoId = document.getElementById(DAILY_TODO_ID);
+
+  const inputDailyContainer = document.getElementById("inputDailyRow");
+  const totalChildrenElement = inputDailyContainer.children.length;
+
+  for (let step = 0; step < totalChildrenElement - 8; step++) {
+    const textDailyInput =
+      inputDailyContainer.getElementsByTagName("textarea")[step].value;
+
+    if (textDailyInput != "") {
+      const templateSplit = textDailyInput
+        .split(",")
+        .map((perTask) => `<div class="eachDailyTask"><p>${perTask}</p></div>`)
+        .join("\n");
+      const cellDaily = makeComponentWeeklySchedule(templateSplit);
+      dailyTodoId.append(cellDaily);
+    } else {
+      const cellDaily = makeComponentWeeklySchedule(textDailyInput);
+      dailyTodoId.append(cellDaily);
+    }
+  }
+
+  const elementLineThroughTarget = document.querySelectorAll(".eachDailyTask");
+  totalElementTask = elementLineThroughTarget.length;
+  for (let i = 0; i < totalElementTask; i++) {
+    elementLineThroughTarget[i].addEventListener("click", function (event) {
+      lineThroughText(event);
+      postDataOutput(storageDaily, DAILY_TODO_ID);
+    });
+
+    elementLineThroughTarget[i].addEventListener(
+      "contextmenu",
+      function (event) {
+        event.preventDefault();
+        highlightTextDaily(event);
+        postDataOutput(storageDaily, DAILY_TODO_ID);
+      }
+    );
+  }
+
+  checkScroll("outputItemDailyData");
+  showOutputHideInput("DailyContainerInput", "DailyContainerOutput");
 }
 
 function makeComponentWeeklySchedule(data) {
@@ -418,7 +425,8 @@ function checkScroll(id) {
 }
 
 function resetWeeklyField() {
-  const textareas = document.querySelectorAll("textarea");
+  const divFieldWeeklyInput = document.getElementById("inputWeeklyRow");
+  const inputs = divFieldWeeklyInput.querySelectorAll("textarea");
 
   const confirmationResult = confirm("Do you want to reset all this field?");
   if (confirmationResult) {
@@ -428,11 +436,11 @@ function resetWeeklyField() {
 
 function resetDailyField() {
   const divFieldDailyInput = document.getElementById("inputDailyRow");
-  const inputs = divFieldDailyInput.querySelectorAll("input");
+  const inputs = divFieldDailyInput.querySelectorAll("textarea");
 
   const confirmationResult = confirm("Do you want to reset all this field?");
   if (confirmationResult) {
-    inputs.forEach((input) => (input.value = ""));
+    inputs.forEach((textarea) => (input.value = ""));
   }
 }
 
