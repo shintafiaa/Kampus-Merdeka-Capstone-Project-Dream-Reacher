@@ -136,10 +136,25 @@ function toggleSectionNavbar(id1, id2, id3, id4, id5, id6, idTarget) {
 function addTodo() {
   const listTodoId = document.getElementById(LIST_TODO_ID);
   const textTodo = document.getElementById("title").value;
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
+  var yyyy = today.getFullYear();
+  if (dd < 10) {
+    dd = "0" + dd;
+  }
+  if (mm < 10) {
+    mm = "0" + mm;
+  }
+  today = yyyy + "-" + mm + "-" + dd;
   const timestamp = document.getElementById("date").value;
 
-  const todo = makeTodo(textTodo, timestamp);
-  listTodoId.append(todo);
+  if (timestamp >= today) {
+    const todo = makeTodo(textTodo, timestamp);
+    listTodoId.append(todo);
+  } else {
+    alert("Please input the right date!");
+  }
 }
 
 function makeTodo(data, timestamp) {
