@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
   defaultView();
+  checkScroll("inputWeeklyRow");
+  checkScroll("inputDailyRow");
+  checkScroll("outputItemWeeklyData");
+  checkScroll("outputItemDailyData");
 
   const submitForm = document.getElementById("form");
   submitForm.addEventListener("submit", function (event) {
