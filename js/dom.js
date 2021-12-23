@@ -421,7 +421,7 @@ function clearOutputWeeklyTable() {
 function checkScroll(id) {
   const gridContainer = document.getElementById(id);
   const totalChildren = gridContainer.children.length;
-  if (totalChildren > 9) {
+  if (totalChildren > 10) {
     gridContainer.classList.add("scroll");
   } else {
     gridContainer.classList.remove("scroll");
